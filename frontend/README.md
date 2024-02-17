@@ -2,7 +2,7 @@
 
 Angular 17 Frontend project.
 
-![Angular 17 Logo](https://miro.medium.com/v2/resize:fit:720/format:webp/0*UC-tiSyyd6b2JNaA)
+![Angular 17 Logo](https://miro.medium.com/v2/resize:fit:720/format:webp/1*1HXCJCOpzKdmQI33ZrEIlg.png)
 
 ## Project Installation
 
