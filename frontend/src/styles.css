@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --default: #090a06; /* titles */
+    --neutral: #2b2522; /* text */
+    --primary: #00adff;
+    --secondary: #4338ca;
+    --accent: #006aff;
+    --base-100: #e5ffff; /* background */
+    --info: #007aff;
+    --success: #00bb51;
+    --warning: #ebbd00;
+    --error: #e10000;
+  }
+}
+
+body {
+  background-color: var(--base-100);
+}
+
+/* scroll bar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+}

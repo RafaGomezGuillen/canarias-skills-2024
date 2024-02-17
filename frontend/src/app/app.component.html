@@ -1,0 +1,9 @@
+@if (isAuthPage) {
+  <router-outlet></router-outlet>
+} @else {
+  <app-header></app-header>
+  <main class="mt-5 mx-auto max-w-screen-xl px-4 sm:px-8">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </main>
+}

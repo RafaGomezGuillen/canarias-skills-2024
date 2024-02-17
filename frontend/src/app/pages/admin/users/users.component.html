@@ -1,0 +1,50 @@
+@if(authService.getRoleFromToken()) {
+<section>
+  <div class="max-w-3xl">
+    <h1 class="block text-2xl font-bold text-default sm:text-3xl">Users</h1>
+    <p class="mt-2 text-lg text-default">
+      All registered users are listed in this page.
+    </p>
+  </div>
+
+  <div class="mt-5 shadow-sm border rounded-lg overflow-x-auto">
+    <table
+      class="w-full table-auto text-sm text-left border-collapse divide-y divide-primary"
+    >
+      <thead class="bg-primary text-default font-medium">
+        <tr class="text-center">
+          <th class="py-3 px-6" scope="col">Username</th>
+          <th class="py-3 px-6" scope="col">Email</th>
+          <th class="py-3 px-6" scope="col">Roles</th>
+          <th class="py-3 px-6" scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="text-neutral divide-y divide-primary">
+        @for (user of userService.userList; track user.username) {
+        <tr class="text-center">
+          <td className="px-6 py-4 whitespace-nowrap">
+            {{ user.username }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ user.email }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ user.roles }}</td>
+          <td class="px-6 whitespace-nowrap">
+            <a
+              [routerLink]="'/admin/user/' + user.username"
+              class="py-2 px-3 font-medium text-default hover:text-accent"
+              [title]="'Go to ' + user.username + ' page'"
+            >
+              Go to page
+            </a>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+} @else {
+<app-error-page
+  [errorType]="'401 Error'"
+  [errorTypeDescription]="'You do not have access to this page'"
+></app-error-page>
+}
