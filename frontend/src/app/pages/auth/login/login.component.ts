@@ -45,8 +45,10 @@ export class LoginComponent implements OnInit {
           this.authService.decodedToken();
 
           this.loginForm.reset();
-          this.toastr.success('You have logged in!');
           this.router.navigate(['']);
+          this.toastr.success('You have logged in!').onHidden.subscribe(() => {
+            window.location.reload();
+          });
         },
         error: (err: HttpErrorResponse) => {
           this.toastr.error(err.error);

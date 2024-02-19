@@ -62,7 +62,7 @@ import { NewsroomComponent } from './pages/company-pages/newsroom/newsroom.compo
     ReactiveFormsModule,
     RouterModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({ timeOut: 2000 }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: tokenInterceptor, multi: true },
