@@ -6,7 +6,7 @@
   </h3>
   <!-- Grid -->
   <!-- <div class="grid lg:grid-cols-2 lg:gap-y-16 gap-10">
-    @for (obra of obraService.obraList; track obra.id) {
+    @for (obra of obraService.obraList.slice(0, 6); track obra.id) {
       <article>
         <a class="group rounded-xl overflow-hidden" [routerLink]="'/obra/' + obra.id">
           <div class="sm:flex">

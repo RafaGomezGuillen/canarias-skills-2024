@@ -1,4 +1,4 @@
-@if(authService.getRoleFromToken()) {
+@if(userService.isAdmin()) {
 <section>
   <div class="max-w-3xl">
     <h1 class="block text-2xl font-bold text-default sm:text-3xl">Users</h1>
