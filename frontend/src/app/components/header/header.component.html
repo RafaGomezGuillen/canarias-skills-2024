@@ -100,10 +100,12 @@
             class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-48 hidden z-10 bg-base-100 sm:shadow-md rounded-lg p-2 before:absolute top-full sm:border before:-top-5 before:start-0 before:w-full before:h-5"
             aria-label="Dropdown menu"
           >
-          <div class="py-2 px-3 mb-2 bg-info rounded">
-            <p class="text-sm text-white">Signed in as</p>
-            <p class="text-sm font-medium text-white">{{this.authService.getUsernameFromToken()}}</p>
-          </div>
+            <div class="py-2 px-3 mb-2 bg-info rounded">
+              <p class="text-sm text-white">Signed in as</p>
+              <p class="text-sm font-medium text-white">
+                {{ this.authService.getUsernameFromToken() }}
+              </p>
+            </div>
             @if (this.userService.isAdmin()) {
             <a
               class="flex w-full items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-accent hover:text-accent focus:ring-2 focus:ring-accent"
@@ -111,12 +113,21 @@
               title="Go to admin page"
               >Admin page</a
             >
-            } @for (item of navigationDropdown; track $index) { @if(item.title
-            === "Log out") {
+            }
+
+            <a
+              class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:text-accent focus:ring-2 focus:ring-accent"
+              [routerLink]="'/profile/' + authService.getUsernameFromToken()"
+              title="Check your profile page"
+              >Profile</a
+            >
+
+            @for (item of navigationDropdown; track $index) { @if(item.title ===
+            "Log out") {
             <button
               class="flex w-full items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:text-accent focus:ring-2 focus:ring-accent"
               (click)="onLogout()"
-              [title]="item.label" 
+              [title]="item.label"
             >
               {{ item.title }}
             </button>

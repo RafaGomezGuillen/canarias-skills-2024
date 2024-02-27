@@ -1,0 +1,20 @@
+@if (this.userService.isAdmin()) {
+  <section>
+    <div class="max-w-screen-xl mx-auto px-4 md:px-8">
+      <div class="max-w-3xl">
+        <h1 class="block text-2xl font-bold text-default sm:text-3xl">
+          {{ userService.user.username }}
+        </h1>
+        <p class="mt-2 text-lg text-default">
+          Email: {{ userService.user.email }}
+        </p>
+      </div>
+    </div>
+  </section>
+  } @else {
+  <app-error-page
+    [errorType]="'401 Error'"
+    [errorTypeDescription]="'You do not have access to this page'"
+  ></app-error-page>
+  }
+  

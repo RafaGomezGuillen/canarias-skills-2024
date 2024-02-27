@@ -15,7 +15,7 @@ import { UserComponent } from './pages/layouts/user/user.component';
 import { AboutComponent } from './pages/company-pages/about/about.component';
 import { CareersComponent } from './pages/company-pages/careers/careers.component';
 import { NewsroomComponent } from './pages/company-pages/newsroom/newsroom.component';
-
+import { UserAdminComponent } from './pages/layouts/user-admin/user-admin.component';
 // canActivate: [AuthGuard] requires to login
 
 const routes: Routes = [
@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'careers', component: CareersComponent, canActivate: [AuthGuard] },
   { path: 'newsroom', component: NewsroomComponent, canActivate: [AuthGuard] },
+  { path: 'profile/:username', component: UserComponent, canActivate: [AuthGuard] },
   // Admin pages
   {
     path: 'admin/admin-page',
@@ -39,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: 'admin/user/:username',
-    component: UserComponent,
+    component: UserAdminComponent,
     canActivate: [AuthGuard],
   },
   // Error page

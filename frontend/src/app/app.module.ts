@@ -33,7 +33,7 @@ import { CareersComponent } from './pages/company-pages/careers/careers.componen
 import { HomeComponent } from './pages/home/home.component';
 import { UserComponent } from './pages/layouts/user/user.component';
 import { NewsroomComponent } from './pages/company-pages/newsroom/newsroom.component';
-
+import { UserAdminComponent } from './pages/layouts/user-admin/user-admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +52,8 @@ import { NewsroomComponent } from './pages/company-pages/newsroom/newsroom.compo
     CareersComponent,
     HomeComponent,
     UserComponent,
-    NewsroomComponent
+    NewsroomComponent,
+    UserAdminComponent
   ],
   imports: [
     BrowserModule,

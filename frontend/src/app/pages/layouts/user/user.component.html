@@ -1,4 +1,4 @@
-@if (this.userService.isAdmin()) {
+@if (username === authService.getUsernameFromToken()) {
 <section>
   <div class="max-w-screen-xl mx-auto px-4 md:px-8">
     <div class="max-w-3xl">

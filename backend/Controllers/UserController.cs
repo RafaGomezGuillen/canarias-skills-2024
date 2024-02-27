@@ -50,15 +50,12 @@ namespace backend.Controllers
             return Ok(users);
         }
 
-        /// <summary>
-        /// Only admin users can view registered users
-        /// </summary>
         [HttpGet("{username}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public async Task<ActionResult<UserFields>> GetUser (string username)
         {
             // Check user with thier roles and NEW FIELDS
