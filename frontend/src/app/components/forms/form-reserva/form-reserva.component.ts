@@ -12,6 +12,8 @@ import { AuthService } from '../../../services/auth.service';
   styles: ``,
 })
 export class FormReservaComponent implements OnInit {
+  today = new Date().toISOString().slice(0, 16);
+
   constructor(
     public reservaService: ReservaService,
     private toastr: ToastrService,

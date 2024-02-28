@@ -135,12 +135,12 @@ namespace backend.Controllers
 
             if (reservaDTO.Invitados < sala.AforoMin)
             {
-                return BadRequest($"El número de invitados es menor que el aforo mínimo de {sala.Nombre}");
+                return BadRequest($"El número de invitados es menor que el aforo mínimo de {sala.Nombre}. Min = {sala.AforoMin}, max = {sala.AforoMax}");
             }
 
             if (reservaDTO.Invitados > sala.AforoMax)
             {
-                return BadRequest($"El número de invitados es mayor que el aforo máximo de {sala.Nombre}");
+                return BadRequest($"El número de invitados es mayor que el aforo máximo de {sala.Nombre}. Min = {sala.AforoMin}, max = {sala.AforoMax}");
             }
 
             reserva.Nombre = reservaDTO.Nombre;

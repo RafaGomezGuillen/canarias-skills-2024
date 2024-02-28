@@ -8,8 +8,8 @@ import { UserService } from '../../../services/user.service';
 export class AdminPageComponent {
   navigations = [
     {
-      title: 'Users',
-      desc: 'CRUD operations with users.',
+      title: 'Usuarios',
+      desc: 'Operaciones CRUD con usuarios.',
       path: '/admin/users',
     },
   ];

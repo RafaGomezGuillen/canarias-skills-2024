@@ -9,14 +9,14 @@ import { UserService } from '../../services/user.service';
 export class HeaderComponent {
   navigation = [
     {
-      title: 'Ver lista de salas',
-      path: '/salas',
-      label: 'Ver lista de salas',
-    },
-    {
       title: 'Realizar una reserva',
       path: `/profile/${this.authService.getUsernameFromToken()}`,
       label: 'Realizar una reserva',
+    },
+    {
+      title: 'Ver lista de salas',
+      path: '/salas',
+      label: 'Ver lista de salas',
     },
     {
       title: 'Ver lista de eventos',

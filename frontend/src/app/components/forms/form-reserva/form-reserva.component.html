@@ -1,6 +1,6 @@
 
 <h3 class="block text-2xl font-bold text-center mt-2 text-default sm:text-3xl">¡Crea una reserva!</h3>
-
+{{today}}
 <div class="bg-base-100 shadow my-5 p-4 py-6 sm:p-6 sm:rounded-lg">  
   <form #rervaForm="ngForm" (ngSubmit)="onSubmit()" class="space-y-5">
     <div>
@@ -17,7 +17,7 @@
     </div>
     <div>
       <label class="font-medium" for="invitados">Invitados</label>
-      <textarea
+      <input
         class="w-full mt-2 px-3 py-2 text-neutral bg-transparent outline-none border focus:border-accent shadow-sm rounded-lg"
         id="invitados"
         type="number"
@@ -25,8 +25,7 @@
         name="invitados"
         #invitados="ngModel"
         required
-      >
-      </textarea>
+      />
     </div>
     <div>
       <label class="font-medium" for="date">Fecha de reserva</label>
@@ -36,6 +35,7 @@
         [(ngModel)]="reservaService.formData.date"
         name="date"
         #date="ngModel"
+        [min]="today"
         required
         class="w-full mt-2 px-3 py-2 text-neutral bg-transparent outline-none border focus:border-accent shadow-sm rounded-lg"
       />
