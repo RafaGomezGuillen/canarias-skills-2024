@@ -12,7 +12,7 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(HotelContext))]
-    [Migration("20240228123932_HotelMigration")]
+    [Migration("20240228175523_HotelMigration")]
     partial class HotelMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,123 @@ namespace backend.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("backend.Models.Comensal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("IdMesa")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MesaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MesaId");
+
+                    b.ToTable("Comensales");
+                });
+
+            modelBuilder.Entity("backend.Models.Mesa", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Capacidad")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdSala")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumeroMesa")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SalaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SalaId");
+
+                    b.ToTable("Mesas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Capacidad = 10,
+                            IdSala = 1,
+                            NumeroMesa = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Capacidad = 5,
+                            IdSala = 1,
+                            NumeroMesa = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Capacidad = 20,
+                            IdSala = 1,
+                            NumeroMesa = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Capacidad = 2,
+                            IdSala = 2,
+                            NumeroMesa = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Capacidad = 22,
+                            IdSala = 3,
+                            NumeroMesa = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Capacidad = 11,
+                            IdSala = 4,
+                            NumeroMesa = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Capacidad = 22,
+                            IdSala = 5,
+                            NumeroMesa = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Capacidad = 23,
+                            IdSala = 6,
+                            NumeroMesa = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Capacidad = 20,
+                            IdSala = 6,
+                            NumeroMesa = 2
+                        });
+                });
 
             modelBuilder.Entity("backend.Models.Reserva", b =>
                 {
@@ -219,15 +336,15 @@ namespace backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "35ee4785-bc91-4c13-9a61-4f0aa5e6a202",
-                            ConcurrencyStamp = "94e7df3c-b5c4-4008-9635-afca44eee282",
+                            Id = "e82a0115-103c-4af6-bcfd-74802399eb29",
+                            ConcurrencyStamp = "0c11e084-1989-4fb4-9d84-6708421a0013",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "3436816f-42d9-4fb7-8233-9f9a1d382dcd",
-                            ConcurrencyStamp = "1007103f-aa89-4efb-9787-f80ad2da6d8c",
+                            Id = "6056b9a7-a995-4bb6-9fd6-d4c4cf4ed083",
+                            ConcurrencyStamp = "df0d7589-8a96-4e00-8b1a-06efadadf444",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -322,18 +439,18 @@ namespace backend.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "4e54e287-216f-4ec2-8a76-7d1761d538b4",
-                            RoleId = "35ee4785-bc91-4c13-9a61-4f0aa5e6a202"
+                            UserId = "692c0638-51b4-4571-95bb-2208954a8e60",
+                            RoleId = "e82a0115-103c-4af6-bcfd-74802399eb29"
                         },
                         new
                         {
-                            UserId = "5dc3bb9a-c575-4454-9c94-c771904223d5",
-                            RoleId = "3436816f-42d9-4fb7-8233-9f9a1d382dcd"
+                            UserId = "82a140a3-0650-49f2-b8bc-44ee82fcdc52",
+                            RoleId = "6056b9a7-a995-4bb6-9fd6-d4c4cf4ed083"
                         },
                         new
                         {
-                            UserId = "e05c5519-ea01-4db6-8a6d-f79ce96f57e1",
-                            RoleId = "3436816f-42d9-4fb7-8233-9f9a1d382dcd"
+                            UserId = "0ce7907e-f1a2-4889-88ce-067f55636186",
+                            RoleId = "6056b9a7-a995-4bb6-9fd6-d4c4cf4ed083"
                         });
                 });
 
@@ -423,52 +540,70 @@ namespace backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4e54e287-216f-4ec2-8a76-7d1761d538b4",
+                            Id = "692c0638-51b4-4571-95bb-2208954a8e60",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0395f6cf-a305-4f1c-bf52-2ebb768c8e5d",
+                            ConcurrencyStamp = "0d944fb9-c714-48a4-8648-683d7898c271",
                             Email = "user1@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER1@EMAIL.COM",
                             NormalizedUserName = "USER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA5MwXw2kc/MYDjpGq9825GMPcOShwD5D8db4uQ2VGrhn1aVA7BBcskeUwDL4NPcng==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDC2KVaL6LdJQoAIPzh7NPi5Rf8aJ5HHb4vBo27NiiHTiB1bs1EBswCb+h2cqU9fqw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "157366c1-5a41-4bfe-9e3e-1889591c6073",
+                            SecurityStamp = "12ef3207-dd4b-4cb0-b564-5ef23f250505",
                             TwoFactorEnabled = false,
                             UserName = "user1"
                         },
                         new
                         {
-                            Id = "5dc3bb9a-c575-4454-9c94-c771904223d5",
+                            Id = "82a140a3-0650-49f2-b8bc-44ee82fcdc52",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e2db4850-4d7a-4942-ac1f-004986f68400",
+                            ConcurrencyStamp = "36ee61d9-db1e-40a5-9a4d-73ea82d82c6c",
                             Email = "user2@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER2@EMAIL.COM",
                             NormalizedUserName = "USER2",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJgKLR36oeK60FMFJ1HS8wfS6KghGGFera6aiO9ou8fqzVIf5L1yy0YvcuZXF9MXDg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHI706tS3tyYYMt4AxVBaYDSo7PAK9nRDf1rCdkADCRwNb17DeUOEKCkswyOBzZ2+A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f477992b-5711-451e-a17e-a4ab2f568ef4",
+                            SecurityStamp = "4aec1318-08dc-40ea-b065-efd18530b67b",
                             TwoFactorEnabled = false,
                             UserName = "user2"
                         },
                         new
                         {
-                            Id = "e05c5519-ea01-4db6-8a6d-f79ce96f57e1",
+                            Id = "0ce7907e-f1a2-4889-88ce-067f55636186",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "69338497-d6d2-4ee0-8609-cd6ef8202ce1",
+                            ConcurrencyStamp = "67f6d527-2665-47b2-8b39-81ec71ccf559",
                             Email = "user3@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER3@EMAIL.COM",
                             NormalizedUserName = "USER3",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMcGAnIux6nuc9rZ2fxeZ5VK3Ped79x7EmennvDiee4BFLQZiKIieZJ+5G8L3UJw6w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIO9q8QCN1lqM1os/UyARhtWTLgvYyDJSUICQ72BFLgXYPPYTSGdt3M240wYBhTi7w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "903f7df3-1483-4625-b475-4edef552411a",
+                            SecurityStamp = "7ba2865c-ba45-45cd-a6e0-849e85d2c701",
                             TwoFactorEnabled = false,
                             UserName = "user3"
                         });
+                });
+
+            modelBuilder.Entity("backend.Models.Comensal", b =>
+                {
+                    b.HasOne("backend.Models.Mesa", "Mesa")
+                        .WithMany("Comensales")
+                        .HasForeignKey("MesaId");
+
+                    b.Navigation("Mesa");
+                });
+
+            modelBuilder.Entity("backend.Models.Mesa", b =>
+                {
+                    b.HasOne("backend.Models.Sala", "Sala")
+                        .WithMany("Mesas")
+                        .HasForeignKey("SalaId");
+
+                    b.Navigation("Sala");
                 });
 
             modelBuilder.Entity("backend.Models.Reserva", b =>
@@ -535,8 +670,15 @@ namespace backend.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("backend.Models.Mesa", b =>
+                {
+                    b.Navigation("Comensales");
+                });
+
             modelBuilder.Entity("backend.Models.Sala", b =>
                 {
+                    b.Navigation("Mesas");
+
                     b.Navigation("Reserva");
                 });
 

@@ -41,7 +41,7 @@
         </span>
       </div>
       <div>
-        <label class="font-medium" for="password"> Password </label>
+        <label class="font-medium" for="password"> Contraseña </label>
         <input
           id="password"
           type="password"
@@ -52,7 +52,7 @@
         />
         <span id="password-error" class="text-error" aria-live="assertive">
           @if (password !== null && password.invalid && (password.dirty
-          ||password.touched)) { *Password is required }
+          ||password.touched)) { *La contraseña es requerida }
         </span>
       </div>
       <button
@@ -65,7 +65,7 @@
         type="submit"
         (click)="onLogin()"
       >
-        Sign in
+        Iniciar sesión
       </button>
     </form>
 

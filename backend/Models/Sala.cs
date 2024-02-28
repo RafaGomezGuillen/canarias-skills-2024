@@ -17,5 +17,6 @@ namespace backend.Models
 
         public string RouteLocalhost { get; set; }
         public virtual List<Reserva>? Reserva { get; set; }
+        public virtual List<Mesa>? Mesas { get; set; }
     }
 }

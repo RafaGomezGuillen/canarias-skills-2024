@@ -28,6 +28,7 @@ namespace backend.Models
 
         [Range(minimum: 1, maximum: int.MaxValue, ErrorMessage = "Introduce un número mínimo de invitados de 1.")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "El número de invitados debe ser un número entero positivo.")]
+        [Required(ErrorMessage = "El número de invitados es requerido.")]
         public int Invitados { get; set; }
 
         [Required(ErrorMessage = "Fecha es requerida.")]

@@ -41,7 +41,25 @@ namespace backend.Controllers
                 EstaReservada = s.EstaReservada,
                 Route = s.Route,
                 RouteLocalhost = s.RouteLocalhost,
-                Reserva = _context.Reservas.Where(reserva => reserva.IdSala == s.Id).ToList()
+                Reserva = _context.Reservas.Where(reserva => reserva.IdSala == s.Id).ToList(),
+                Mesas = _context.Mesas.Where(mesa => mesa.IdSala == s.Id).Select(s => new Mesa
+                {
+                    Id = s.Id,
+                    NumeroMesa = s.NumeroMesa,
+                    Capacidad = s.Capacidad,
+                    IdSala = s.IdSala,
+                    Sala = _context.Salas.Where(sala => sala.Id == s.IdSala).Select(s => new Sala
+                    {
+                        Id = s.Id,
+                        Nombre = s.Nombre,
+                        AforoMax = s.AforoMax,
+                        AforoMin = s.AforoMin,
+                        EstaReservada = s.EstaReservada,
+                        Route = s.Route,
+                        RouteLocalhost = s.RouteLocalhost,
+                    }).FirstOrDefault(),
+                    Comensales = _context.Comensales.Where(comensal => comensal.IdMesa == s.Id).ToList()
+                }).ToList(),
             }).ToListAsync();
 
             return Ok(salas);
@@ -67,7 +85,25 @@ namespace backend.Controllers
                 EstaReservada = s.EstaReservada,
                 Route = s.Route,
                 RouteLocalhost = s.RouteLocalhost,
-                Reserva = _context.Reservas.Where(reserva => reserva.IdSala == s.Id).ToList()
+                Reserva = _context.Reservas.Where(reserva => reserva.IdSala == s.Id).ToList(),
+                Mesas = _context.Mesas.Where(mesa => mesa.IdSala == s.Id).Select(s => new Mesa
+                {
+                    Id = s.Id,
+                    NumeroMesa = s.NumeroMesa,
+                    Capacidad = s.Capacidad,
+                    IdSala = s.IdSala,
+                    Sala = _context.Salas.Where(sala => sala.Id == s.IdSala).Select(s => new Sala
+                    {
+                        Id = s.Id,
+                        Nombre = s.Nombre,
+                        AforoMax = s.AforoMax,
+                        AforoMin = s.AforoMin,
+                        EstaReservada = s.EstaReservada,
+                        Route = s.Route,
+                        RouteLocalhost = s.RouteLocalhost,
+                    }).FirstOrDefault(),
+                    Comensales = _context.Comensales.Where(comensal => comensal.IdMesa == s.Id).ToList()
+                }).ToList(),
             }).FirstOrDefaultAsync();
 
             if (sala == null)
@@ -76,32 +112,6 @@ namespace backend.Controllers
             }
 
             return sala;
-        }
-
-        // PUT: api/Sala/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [NonAction]
-        public async Task<IActionResult> PutSala (int id)
-        {
-            var sala = await _context.Salas.FindAsync(id);
-
-            if (sala == null)
-            {
-                return NotFound($"La sala con id: {id} no ha sido encontrada.");
-            }
-
-            sala.EstaReservada = true;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException) when (!SalaExists(id))
-            {
-                return NotFound($"La sala con id: {id} no ha sido encontrada.");
-            }
-
-            return Ok(sala);
         }
 
         private bool SalaExists (int id)

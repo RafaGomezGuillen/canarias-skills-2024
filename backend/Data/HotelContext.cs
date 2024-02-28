@@ -12,10 +12,24 @@ namespace backend.Data
 
         public DbSet<Reserva>? Reservas { get; set; }
         public DbSet<Sala>? Salas { get; set; }
-
+        public DbSet<Mesa>? Mesas { get; set; }
+        public DbSet<Comensal>? Comensales { get; set; }
         protected override void OnModelCreating (ModelBuilder modelBuilder)
         {
             // Seed data
+
+            modelBuilder.Entity<Mesa>().HasData
+            (
+                new Mesa { Id = 1, NumeroMesa = 1, Capacidad = 10, IdSala = 1 },
+                new Mesa { Id = 2, NumeroMesa = 2, Capacidad = 5, IdSala = 1 },
+                new Mesa { Id = 3, NumeroMesa = 3, Capacidad = 20, IdSala = 1 },
+                new Mesa { Id = 4, NumeroMesa = 1, Capacidad = 2, IdSala = 2 },
+                new Mesa { Id = 5, NumeroMesa = 1, Capacidad = 22, IdSala = 3 },
+                new Mesa { Id = 6, NumeroMesa = 1, Capacidad = 11, IdSala = 4 },
+                new Mesa { Id = 7, NumeroMesa = 1, Capacidad = 22, IdSala = 5 },
+                new Mesa { Id = 8, NumeroMesa = 1, Capacidad = 23, IdSala = 6 },
+                new Mesa { Id = 9, NumeroMesa = 2, Capacidad = 20, IdSala = 6 }
+            );
 
             modelBuilder.Entity<Sala>().HasData
             (

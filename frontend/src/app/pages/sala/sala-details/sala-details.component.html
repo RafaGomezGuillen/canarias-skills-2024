@@ -16,9 +16,9 @@
         <div class="space-y-6 sm:space-y-8">
           <!-- Title -->
           <div class="space-y-2 md:space-y-4">
-            <h3 class="font-bold text-3xl lg:text-4xl text-default">
+            <h1 class="font-bold text-3xl lg:text-4xl text-default">
               {{ salaService.sala.nombre }}
-            </h3>
+            </h1>
             <p class="text-neutral text-2xl">
               @if (salaService.sala.estaReservada) { Sala reservada } @else {
               Sala disponible }
@@ -85,8 +85,76 @@
     </div>
     <!-- End Grid -->
   </section>
-  @if(salaService.sala.reserva.length > 0) {
+
+  @if(salaService.sala.mesas.length > 0) {
   <div class="mt-5 shadow-sm border rounded-lg overflow-x-auto">
+    <h3 class="my-2 font-bold text-2xl text-default text-center">
+      Número de mesas disponibles
+    </h3>
+    <table
+      class="w-full table-auto text-sm text-left border-collapse divide-y divide-primary"
+    >
+      <thead class="bg-primary text-default font-medium">
+        <tr class="text-center">
+          <th class="py-3 px-6" scope="col">Número</th>
+          <th class="py-3 px-6" scope="col">Capacidad</th>
+          <th class="py-3 px-6" scope="col">Comensales</th>
+        </tr>
+      </thead>
+      <tbody class="text-neutral divide-y divide-primary">
+        @for (mesa of salaService.sala.mesas; track mesa.id) {
+        <tr class="text-center">
+          <td class="px-6 py-4 whitespace-nowrap">{{ mesa.numeroMesa }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ mesa.capacidad }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            @if (mesa.comensales.length > 0) {
+            <table
+              class="w-full table-auto text-sm text-left border-collapse divide-y divide-primary"
+            >
+              <thead class="bg-primary text-default font-medium">
+                <tr class="text-center">
+                  <th class="py-3 px-6" scope="col">Nombre</th>
+                  <th class="py-3 px-6" scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody class="text-neutral divide-y divide-primary">
+                @for (comensal of mesa.comensales; track comensal.nombre) {
+                <tr class="text-center">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    {{ comensal.nombre }}
+                  </td>
+                  <td class="px-6 whitespace-nowrap">
+                    @for (reserva of salaService.sala.reserva; track reserva.id) { 
+                      @if (reserva.username ===  authService.getUsernameFromToken()) {
+                        <button
+                          (click)="onDelete(comensal.id)"
+                          class="py-2 px-3 font-medium text-error hover:text-accent"
+                          [title]="'Borrar comensal ' + comensal.nombre"
+                        >
+                          Borrar
+                        </button>
+                    } @else {
+                      {{comensal.id}}
+                    }
+                  }
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
+
+            } @else { No hay comensales registrados }
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  } @if(salaService.sala.reserva.length > 0) {
+  <div class="mt-5 shadow-sm border rounded-lg overflow-x-auto">
+    <h3 class="my-2 font-bold text-2xl text-default text-center">
+      Eventos a realizar
+    </h3>
     <table
       class="w-full table-auto text-sm text-left border-collapse divide-y divide-primary"
     >

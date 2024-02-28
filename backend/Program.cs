@@ -54,7 +54,7 @@ internal class Program
 
         builder.Services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "ChangeName API", Version = "v1" }); // Change name
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelDB API", Version = "v1" }); // Change name
             var securityScheme = new OpenApiSecurityScheme
             {
                 Name = "JWT Authentication",

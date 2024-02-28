@@ -173,6 +173,27 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Mesas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NumeroMesa = table.Column<int>(type: "int", nullable: false),
+                    Capacidad = table.Column<int>(type: "int", nullable: false),
+                    IdSala = table.Column<int>(type: "int", nullable: false),
+                    SalaId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Mesas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Mesas_Salas_SalaId",
+                        column: x => x.SalaId,
+                        principalTable: "Salas",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Reservas",
                 columns: table => new
                 {
@@ -201,13 +222,33 @@ namespace backend.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Comensales",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdMesa = table.Column<int>(type: "int", nullable: false),
+                    MesaId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comensales", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comensales_Mesas_MesaId",
+                        column: x => x.MesaId,
+                        principalTable: "Mesas",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "3436816f-42d9-4fb7-8233-9f9a1d382dcd", "1007103f-aa89-4efb-9787-f80ad2da6d8c", "Admin", "ADMIN" },
-                    { "35ee4785-bc91-4c13-9a61-4f0aa5e6a202", "94e7df3c-b5c4-4008-9635-afca44eee282", "User", "USER" }
+                    { "6056b9a7-a995-4bb6-9fd6-d4c4cf4ed083", "df0d7589-8a96-4e00-8b1a-06efadadf444", "Admin", "ADMIN" },
+                    { "e82a0115-103c-4af6-bcfd-74802399eb29", "0c11e084-1989-4fb4-9d84-6708421a0013", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -215,9 +256,25 @@ namespace backend.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "4e54e287-216f-4ec2-8a76-7d1761d538b4", 0, "0395f6cf-a305-4f1c-bf52-2ebb768c8e5d", "user1@email.com", false, false, null, "USER1@EMAIL.COM", "USER1", "AQAAAAEAACcQAAAAEA5MwXw2kc/MYDjpGq9825GMPcOShwD5D8db4uQ2VGrhn1aVA7BBcskeUwDL4NPcng==", null, false, "157366c1-5a41-4bfe-9e3e-1889591c6073", false, "user1" },
-                    { "5dc3bb9a-c575-4454-9c94-c771904223d5", 0, "e2db4850-4d7a-4942-ac1f-004986f68400", "user2@email.com", false, false, null, "USER2@EMAIL.COM", "USER2", "AQAAAAEAACcQAAAAEJgKLR36oeK60FMFJ1HS8wfS6KghGGFera6aiO9ou8fqzVIf5L1yy0YvcuZXF9MXDg==", null, false, "f477992b-5711-451e-a17e-a4ab2f568ef4", false, "user2" },
-                    { "e05c5519-ea01-4db6-8a6d-f79ce96f57e1", 0, "69338497-d6d2-4ee0-8609-cd6ef8202ce1", "user3@email.com", false, false, null, "USER3@EMAIL.COM", "USER3", "AQAAAAEAACcQAAAAEMcGAnIux6nuc9rZ2fxeZ5VK3Ped79x7EmennvDiee4BFLQZiKIieZJ+5G8L3UJw6w==", null, false, "903f7df3-1483-4625-b475-4edef552411a", false, "user3" }
+                    { "0ce7907e-f1a2-4889-88ce-067f55636186", 0, "67f6d527-2665-47b2-8b39-81ec71ccf559", "user3@email.com", false, false, null, "USER3@EMAIL.COM", "USER3", "AQAAAAEAACcQAAAAEIO9q8QCN1lqM1os/UyARhtWTLgvYyDJSUICQ72BFLgXYPPYTSGdt3M240wYBhTi7w==", null, false, "7ba2865c-ba45-45cd-a6e0-849e85d2c701", false, "user3" },
+                    { "692c0638-51b4-4571-95bb-2208954a8e60", 0, "0d944fb9-c714-48a4-8648-683d7898c271", "user1@email.com", false, false, null, "USER1@EMAIL.COM", "USER1", "AQAAAAEAACcQAAAAEDC2KVaL6LdJQoAIPzh7NPi5Rf8aJ5HHb4vBo27NiiHTiB1bs1EBswCb+h2cqU9fqw==", null, false, "12ef3207-dd4b-4cb0-b564-5ef23f250505", false, "user1" },
+                    { "82a140a3-0650-49f2-b8bc-44ee82fcdc52", 0, "36ee61d9-db1e-40a5-9a4d-73ea82d82c6c", "user2@email.com", false, false, null, "USER2@EMAIL.COM", "USER2", "AQAAAAEAACcQAAAAEHI706tS3tyYYMt4AxVBaYDSo7PAK9nRDf1rCdkADCRwNb17DeUOEKCkswyOBzZ2+A==", null, false, "4aec1318-08dc-40ea-b065-efd18530b67b", false, "user2" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Mesas",
+                columns: new[] { "Id", "Capacidad", "IdSala", "NumeroMesa", "SalaId" },
+                values: new object[,]
+                {
+                    { 1, 10, 1, 1, null },
+                    { 2, 5, 1, 2, null },
+                    { 3, 20, 1, 3, null },
+                    { 4, 2, 2, 1, null },
+                    { 5, 22, 3, 1, null },
+                    { 6, 11, 4, 1, null },
+                    { 7, 22, 5, 1, null },
+                    { 8, 23, 6, 1, null },
+                    { 9, 20, 6, 2, null }
                 });
 
             migrationBuilder.InsertData(
@@ -239,17 +296,17 @@ namespace backend.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "35ee4785-bc91-4c13-9a61-4f0aa5e6a202", "4e54e287-216f-4ec2-8a76-7d1761d538b4" });
+                values: new object[] { "6056b9a7-a995-4bb6-9fd6-d4c4cf4ed083", "0ce7907e-f1a2-4889-88ce-067f55636186" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "3436816f-42d9-4fb7-8233-9f9a1d382dcd", "5dc3bb9a-c575-4454-9c94-c771904223d5" });
+                values: new object[] { "e82a0115-103c-4af6-bcfd-74802399eb29", "692c0638-51b4-4571-95bb-2208954a8e60" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "3436816f-42d9-4fb7-8233-9f9a1d382dcd", "e05c5519-ea01-4db6-8a6d-f79ce96f57e1" });
+                values: new object[] { "6056b9a7-a995-4bb6-9fd6-d4c4cf4ed083", "82a140a3-0650-49f2-b8bc-44ee82fcdc52" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -291,6 +348,16 @@ namespace backend.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comensales_MesaId",
+                table: "Comensales",
+                column: "MesaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Mesas_SalaId",
+                table: "Mesas",
+                column: "SalaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reservas_SalaId",
                 table: "Reservas",
                 column: "SalaId");
@@ -319,10 +386,16 @@ namespace backend.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Comensales");
+
+            migrationBuilder.DropTable(
                 name: "Reservas");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Mesas");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

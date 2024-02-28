@@ -1,4 +1,5 @@
 ﻿using backend.Data;
+using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -75,7 +76,26 @@ namespace backend.Controllers
             {
                 Username = userManager.UserName,
                 Email = userManager.Email,
-                Reservas = _context.Reservas.Where(i => i.Username == username).ToList()
+                Reservas = _context.Reservas.Where(i => i.Username == username).Select(r => new Reserva
+                {
+                    Id = r.Id,
+                    Nombre = r.Nombre,
+                    Invitados = r.Invitados,
+                    Date = r.Date,
+                    Username = r.Username,
+                    IdSala = r.IdSala,
+                    Sala = _context.Salas.Where(sala => sala.Id == r.IdSala).Select(s => new Sala
+                    {
+                        Id = s.Id,
+                        Nombre = s.Nombre,
+                        AforoMax = s.AforoMax,
+                        AforoMin = s.AforoMin,
+                        EstaReservada = s.EstaReservada,
+                        Route = s.Route,
+                        RouteLocalhost = s.RouteLocalhost,
+                        Mesas = _context.Mesas.Where(mesa => mesa.IdSala == s.Id).ToList(),
+                    }).FirstOrDefault()
+                }).ToList()
             };
 
             // Adding roles to users

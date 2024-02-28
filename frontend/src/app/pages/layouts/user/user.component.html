@@ -19,6 +19,7 @@
             <th class="py-3 px-6" scope="col">Evento</th>
             <th class="py-3 px-6" scope="col">Invitados</th>
             <th class="py-3 px-6" scope="col">Fecha</th>
+            <th class="py-3 px-6" scope="col">Sala</th>
             <th class="py-3 px-6" scope="col">Operaciones</th>
           </tr>
         </thead>
@@ -28,7 +29,24 @@
             <td class="px-6 py-4 whitespace-nowrap">{{ reserva.nombre }}</td>
             <td class="px-6 py-4 whitespace-nowrap">{{ reserva.invitados }}</td>
             <td class="px-6 py-4 whitespace-nowrap">{{ reserva.date }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <a
+                class="underline"
+                [routerLink]="'/sala/' + reserva.sala.id"
+                [title]="'Ir a la página de ' + reserva.sala.nombre"
+              >
+                {{ reserva.sala.nombre }}
+              </a>
+            </td>
             <td class="px-6 whitespace-nowrap">
+              <a
+                [routerLink]="'/sala/' + reserva.sala.id"
+                class="py-2 px-3 font-medium text-success hover:text-accent"
+                title="Gestionar comensales"
+              >
+                Gestionar comensales
+              </a>
+
               <button
                 (click)="populateForm(reserva)"
                 class="py-2 px-3 font-medium text-secondary hover:text-accent"
@@ -51,6 +69,61 @@
     </div>
     }
     <app-form-reserva></app-form-reserva>
+
+    @if(userService.user.reservas.length > 0) {
+    <div class="bg-base-100 shadow my-5 p-4 py-6 sm:p-6 sm:rounded-lg">
+      <h3
+        class="block text-2xl font-bold text-center mt-2 text-default sm:text-3xl"
+      >
+        ¡Añade un comensal a tu mesas!
+      </h3>
+      <form #comensalForm="ngForm" (ngSubmit)="onSubmit()" class="space-y-5">
+        <div>
+          <label class="font-medium" for="nombre">Nombre del comensal</label>
+          <input
+            id="nombre"
+            type="text"
+            [(ngModel)]="comensalService.formData.nombre"
+            name="nombre"
+            #nombre="ngModel"
+            minlength="3"
+            maxlength="50"
+            required
+            class="w-full mt-2 px-3 py-2 text-neutral bg-transparent outline-none border focus:border-accent shadow-sm rounded-lg"
+          />
+        </div>
+        <div>
+          <label class="font-medium" for="idMesa">Selecciona la mesa</label>
+          <select
+            class="w-full mt-2 px-3 py-2 text-neutral bg-transparent outline-none border focus:border-accent shadow-sm rounded-lg"
+            id="idMesa"
+            type="text"
+            [(ngModel)]="comensalService.formData.idMesa"
+            name="idMesa"
+            #idMesa="ngModel"
+            required
+          >
+            @for (mesa of mesaService.mesaList; track mesa.id) { @for (reserva
+            of userService.user.reservas; track reserva.id) { @if(mesa.idSala
+            === reserva.idSala) {
+            <option [value]="mesa.id">
+              {{
+                "Mesa Nº " + mesa.numeroMesa + " de la sala " + mesa.sala.nombre
+              }}
+            </option>
+            } } }
+          </select>
+        </div>
+        <button
+          class="w-full px-4 py-2 text-white font-medium bg-primary hover:bg-accent active:bg-primary rounded-lg duration-150"
+          type="submit"
+          title="Añadir comensal"
+        >
+          Añadir comensal
+        </button>
+      </form>
+    </div>
+    }
   </div>
 </section>
 } @else {
