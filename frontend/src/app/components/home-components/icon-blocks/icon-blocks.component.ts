@@ -25,8 +25,8 @@ export class IconBlocksComponent {
       <path d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4" />
       <path d="M8 18h.01" />
     </svg>`),
-      title: '1.- Responsive',
-      description: ' Responsive, and mobile-first project on the web',
+      title: '1.- Ver sala',
+      description: ' Puedes reservar salas con horario disponible',
     },
     {
       svg: this.sanitizer.bypassSecurityTrustHtml(` <svg
@@ -46,8 +46,8 @@ export class IconBlocksComponent {
       <circle cx="17" cy="17" r="3" />
       <circle cx="7" cy="7" r="3" />
     </svg>`),
-      title: '2.- Customizable',
-      description: 'Components are easily customized and extendable',
+      title: '2.- Ir a realizar una reserva',
+      description: 'En esta página encontraras un formulario para crear y gestionar reservas',
     },
     {
       svg: this.sanitizer.bypassSecurityTrustHtml(` <svg
@@ -65,8 +65,8 @@ export class IconBlocksComponent {
       <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
       <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
     </svg>`),
-      title: '3.- Documentation',
-      description: 'Every component and plugin is well documented',
+      title: '3.- Rellena el formulario',
+      description: 'Ten cuidado con el aforo mínimo y máximo, además de la fecha de reserva',
     },
     {
       svg: this.sanitizer.bypassSecurityTrustHtml(`<svg
@@ -86,8 +86,8 @@ export class IconBlocksComponent {
       />
       <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
     </svg>`),
-      title: '4.- 24/7 Support',
-      description: 'Contact us 24 hours a day, 7 days a week',
+      title: '4.- ¡Y listo!',
+      description: 'Con tan muy poquitos clicks puedes empezar a ver tus eventos',
     },
   ];
   

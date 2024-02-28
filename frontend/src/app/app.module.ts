@@ -22,6 +22,7 @@ import { CardsComponent } from './components/home-components/cards/cards.compone
 import { HeroComponent } from './components/home-components/hero/hero.component';
 import { IconBlocksComponent } from './components/home-components/icon-blocks/icon-blocks.component';
 import { TestimonialsComponent } from './components/home-components/testimonials/testimonials.component';
+import { FormReservaComponent } from './components/forms/form-reserva/form-reserva.component';
 
 // Pages
 import { LoginComponent } from './pages/auth/login/login.component';
@@ -34,6 +35,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { UserComponent } from './pages/layouts/user/user.component';
 import { NewsroomComponent } from './pages/company-pages/newsroom/newsroom.component';
 import { UserAdminComponent } from './pages/layouts/user-admin/user-admin.component';
+import { SalaListComponent } from './pages/sala/sala-list/sala-list.component';
+import { SalaDetailsComponent } from './pages/sala/sala-details/sala-details.component';
+import { ReservaListComponent } from './pages/reserva/reserva-list/reserva-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +58,11 @@ import { UserAdminComponent } from './pages/layouts/user-admin/user-admin.compon
     HomeComponent,
     UserComponent,
     NewsroomComponent,
-    UserAdminComponent
+    UserAdminComponent,
+    SalaListComponent,
+    SalaDetailsComponent,
+    ReservaListComponent,
+    FormReservaComponent,
   ],
   imports: [
     BrowserModule,

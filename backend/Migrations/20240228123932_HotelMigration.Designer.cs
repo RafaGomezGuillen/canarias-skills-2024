@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Data;
 
@@ -10,10 +11,11 @@ using backend.Data;
 
 namespace backend.Migrations
 {
-    [DbContext(typeof(ChangeNameContext))]
-    partial class ChangeNameContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(HotelContext))]
+    [Migration("20240228123932_HotelMigration")]
+    partial class HotelMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +23,172 @@ namespace backend.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("backend.Models.Reserva", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdSala")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Invitados")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SalaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SalaId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reservas");
+                });
+
+            modelBuilder.Entity("backend.Models.Sala", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AforoMax")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AforoMin")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("EstaReservada")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Route")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RouteLocalhost")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Salas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AforoMax = 102,
+                            AforoMin = 70,
+                            EstaReservada = false,
+                            Nombre = "Carpa Jilorio",
+                            Route = "",
+                            RouteLocalhost = "https://localhost:7060/Uploads/sala1/foto.jpg"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AforoMax = 62,
+                            AforoMin = 50,
+                            EstaReservada = false,
+                            Nombre = "Salón Sancoch",
+                            Route = "",
+                            RouteLocalhost = "https://localhost:7060/Uploads/sala2/foto.jpg"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AforoMax = 56,
+                            AforoMin = 40,
+                            EstaReservada = false,
+                            Nombre = "Terraza Solajero",
+                            Route = "",
+                            RouteLocalhost = "https://localhost:7060/Uploads/sala3/foto.jpg"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AforoMax = 64,
+                            AforoMin = 46,
+                            EstaReservada = false,
+                            Nombre = "Pabellón Chascar",
+                            Route = "",
+                            RouteLocalhost = "https://localhost:7060/Uploads/sala4/foto.jpg"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AforoMax = 116,
+                            AforoMin = 80,
+                            EstaReservada = false,
+                            Nombre = "Jardín Abollao",
+                            Route = "",
+                            RouteLocalhost = "https://localhost:7060/Uploads/sala5/foto.jpg"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AforoMax = 260,
+                            AforoMin = 140,
+                            EstaReservada = false,
+                            Nombre = "Recinto Belingo",
+                            Route = "",
+                            RouteLocalhost = "https://localhost:7060/Uploads/sala6/foto.jpg"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AforoMax = 54,
+                            AforoMin = 38,
+                            EstaReservada = false,
+                            Nombre = "Sala Empalicar",
+                            Route = "",
+                            RouteLocalhost = "https://localhost:7060/Uploads/sala7/foto.jpg"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AforoMax = 144,
+                            AforoMin = 100,
+                            EstaReservada = false,
+                            Nombre = "Zagúan Enyugar",
+                            Route = "",
+                            RouteLocalhost = "https://localhost:7060/Uploads/sala8/foto.jpg"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AforoMax = 200,
+                            AforoMin = 200,
+                            EstaReservada = false,
+                            Nombre = "Palacio Canchanchán",
+                            Route = "",
+                            RouteLocalhost = "https://localhost:7060/Uploads/sala9/foto.jpg"
+                        });
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -51,15 +219,15 @@ namespace backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2bcf9c4e-2998-4db0-bc55-96da392eaad4",
-                            ConcurrencyStamp = "77437752-dad4-4dd4-a6ec-38939bc9f207",
+                            Id = "35ee4785-bc91-4c13-9a61-4f0aa5e6a202",
+                            ConcurrencyStamp = "94e7df3c-b5c4-4008-9635-afca44eee282",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "3040e89b-e63c-4256-9b4e-82aa89b064e3",
-                            ConcurrencyStamp = "a415398e-f905-4df4-a333-789495e8e9b1",
+                            Id = "3436816f-42d9-4fb7-8233-9f9a1d382dcd",
+                            ConcurrencyStamp = "1007103f-aa89-4efb-9787-f80ad2da6d8c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -154,18 +322,18 @@ namespace backend.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "8224c979-efd1-4843-b15c-a18b931bce1d",
-                            RoleId = "2bcf9c4e-2998-4db0-bc55-96da392eaad4"
+                            UserId = "4e54e287-216f-4ec2-8a76-7d1761d538b4",
+                            RoleId = "35ee4785-bc91-4c13-9a61-4f0aa5e6a202"
                         },
                         new
                         {
-                            UserId = "29205f98-3787-4755-aa2b-cefd7518b13a",
-                            RoleId = "3040e89b-e63c-4256-9b4e-82aa89b064e3"
+                            UserId = "5dc3bb9a-c575-4454-9c94-c771904223d5",
+                            RoleId = "3436816f-42d9-4fb7-8233-9f9a1d382dcd"
                         },
                         new
                         {
-                            UserId = "e9d64880-5f08-419c-9bbf-f2f0a217eff7",
-                            RoleId = "3040e89b-e63c-4256-9b4e-82aa89b064e3"
+                            UserId = "e05c5519-ea01-4db6-8a6d-f79ce96f57e1",
+                            RoleId = "3436816f-42d9-4fb7-8233-9f9a1d382dcd"
                         });
                 });
 
@@ -255,52 +423,65 @@ namespace backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8224c979-efd1-4843-b15c-a18b931bce1d",
+                            Id = "4e54e287-216f-4ec2-8a76-7d1761d538b4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "28f8bd51-07f8-4c0d-9ea1-b35710111aa9",
+                            ConcurrencyStamp = "0395f6cf-a305-4f1c-bf52-2ebb768c8e5d",
                             Email = "user1@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER1@EMAIL.COM",
                             NormalizedUserName = "USER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPLht71/wADOVRASuibwlxsHrnOPmrk2zvVLOsX9hdKz/1eguRYth/LDw/9XyvDXow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA5MwXw2kc/MYDjpGq9825GMPcOShwD5D8db4uQ2VGrhn1aVA7BBcskeUwDL4NPcng==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7a89bd8e-6b57-4476-94e1-1256f2d0f068",
+                            SecurityStamp = "157366c1-5a41-4bfe-9e3e-1889591c6073",
                             TwoFactorEnabled = false,
                             UserName = "user1"
                         },
                         new
                         {
-                            Id = "29205f98-3787-4755-aa2b-cefd7518b13a",
+                            Id = "5dc3bb9a-c575-4454-9c94-c771904223d5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a8f3848d-b531-4bae-aa5b-07596c9143ea",
+                            ConcurrencyStamp = "e2db4850-4d7a-4942-ac1f-004986f68400",
                             Email = "user2@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER2@EMAIL.COM",
                             NormalizedUserName = "USER2",
-                            PasswordHash = "AQAAAAEAACcQAAAAEODgl1KU286XUF5kI1B/QGKvSq5E8NmyrSMeGpZkWWpDLHGkfjQGnaSZa6tZq75OTg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJgKLR36oeK60FMFJ1HS8wfS6KghGGFera6aiO9ou8fqzVIf5L1yy0YvcuZXF9MXDg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d4ce5c5e-28cc-4ce0-9625-e0ba350caf8a",
+                            SecurityStamp = "f477992b-5711-451e-a17e-a4ab2f568ef4",
                             TwoFactorEnabled = false,
                             UserName = "user2"
                         },
                         new
                         {
-                            Id = "e9d64880-5f08-419c-9bbf-f2f0a217eff7",
+                            Id = "e05c5519-ea01-4db6-8a6d-f79ce96f57e1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "da3ad56a-643e-4ac1-bd65-29bce2e24350",
+                            ConcurrencyStamp = "69338497-d6d2-4ee0-8609-cd6ef8202ce1",
                             Email = "user3@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER3@EMAIL.COM",
                             NormalizedUserName = "USER3",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKG/Q+yFxZN5S6tLG/9J7XoAEFjnfN4C0ftoOsPxj+voQABZ6ufZ9dG1MzsNXDAUhg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMcGAnIux6nuc9rZ2fxeZ5VK3Ped79x7EmennvDiee4BFLQZiKIieZJ+5G8L3UJw6w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1883e46d-8f94-40c2-98a6-4e54808de45b",
+                            SecurityStamp = "903f7df3-1483-4625-b475-4edef552411a",
                             TwoFactorEnabled = false,
                             UserName = "user3"
                         });
+                });
+
+            modelBuilder.Entity("backend.Models.Reserva", b =>
+                {
+                    b.HasOne("backend.Models.Sala", "Sala")
+                        .WithMany("Reserva")
+                        .HasForeignKey("SalaId");
+
+                    b.HasOne("User", null)
+                        .WithMany("Reservas")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Sala");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -352,6 +533,16 @@ namespace backend.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("backend.Models.Sala", b =>
+                {
+                    b.Navigation("Reserva");
+                });
+
+            modelBuilder.Entity("User", b =>
+                {
+                    b.Navigation("Reservas");
                 });
 #pragma warning restore 612, 618
         }

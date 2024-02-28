@@ -16,17 +16,27 @@ import { AboutComponent } from './pages/company-pages/about/about.component';
 import { CareersComponent } from './pages/company-pages/careers/careers.component';
 import { NewsroomComponent } from './pages/company-pages/newsroom/newsroom.component';
 import { UserAdminComponent } from './pages/layouts/user-admin/user-admin.component';
+import { SalaListComponent } from './pages/sala/sala-list/sala-list.component';
+import { SalaDetailsComponent } from './pages/sala/sala-details/sala-details.component';
+import { ReservaListComponent } from './pages/reserva/reserva-list/reserva-list.component';
 // canActivate: [AuthGuard] requires to login
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'salas', component: SalaListComponent },
+  { path: 'sala/:id', component: SalaDetailsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'careers', component: CareersComponent, canActivate: [AuthGuard] },
   { path: 'newsroom', component: NewsroomComponent, canActivate: [AuthGuard] },
-  { path: 'profile/:username', component: UserComponent, canActivate: [AuthGuard] },
+  { path: 'eventos', component: ReservaListComponent, canActivate: [AuthGuard] },
+  {
+    path: 'profile/:username',
+    component: UserComponent,
+    canActivate: [AuthGuard],
+  },
   // Admin pages
   {
     path: 'admin/admin-page',

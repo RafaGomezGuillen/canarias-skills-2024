@@ -9,19 +9,24 @@ import { UserService } from '../../services/user.service';
 export class HeaderComponent {
   navigation = [
     {
-      title: 'Upload image',
-      path: '/image/upload-image',
-      label: 'Go to Upload image page',
+      title: 'Ver lista de salas',
+      path: '/salas',
+      label: 'Ver lista de salas',
     },
-    { title: 'Careers', path: '', label: 'Go to Careers page' },
-    { title: 'Guides', path: '', label: 'Go to Guides page' },
-    { title: 'Partners', path: '', label: 'Go to Partners page' },
+    {
+      title: 'Realizar una reserva',
+      path: `/profile/${this.authService.getUsernameFromToken()}`,
+      label: 'Realizar una reserva',
+    },
+    {
+      title: 'Ver lista de eventos',
+      path: '/eventos',
+      label: 'Ver lista de eventos por realizar',
+    },
   ];
 
   navigationDropdown = [
-    { title: 'Dashboard', path: '', label: 'Go to Dashboard page' },
-    { title: 'Settings', path: '', label: 'Go to settings page' },
-    { title: 'Log out', path: '', label: 'Log out of the page' },
+    { title: 'Cerrar sesión', path: '', label: 'Cerrar sesión' },
   ];
 
   constructor(

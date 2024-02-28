@@ -9,6 +9,48 @@
         Email: {{ userService.user.email }}
       </p>
     </div>
+    @if(userService.user.reservas.length > 0) {
+    <div class="mt-5 shadow-sm border rounded-lg overflow-x-auto">
+      <table
+        class="w-full table-auto text-sm text-left border-collapse divide-y divide-primary"
+      >
+        <thead class="bg-primary text-default font-medium">
+          <tr class="text-center">
+            <th class="py-3 px-6" scope="col">Evento</th>
+            <th class="py-3 px-6" scope="col">Invitados</th>
+            <th class="py-3 px-6" scope="col">Fecha</th>
+            <th class="py-3 px-6" scope="col">Operaciones</th>
+          </tr>
+        </thead>
+        <tbody class="text-neutral divide-y divide-primary">
+          @for (reserva of userService.user.reservas; track reserva.id) {
+          <tr class="text-center">
+            <td class="px-6 py-4 whitespace-nowrap">{{ reserva.nombre }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ reserva.invitados }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ reserva.date }}</td>
+            <td class="px-6 whitespace-nowrap">
+              <button
+                (click)="populateForm(reserva)"
+                class="py-2 px-3 font-medium text-secondary hover:text-accent"
+                [title]="'Editar ' + reserva.nombre"
+              >
+                Editar
+              </button>
+
+              <button
+                (click)="onDelete(reserva.id)"
+                class="py-2 px-3 font-medium text-error hover:text-accent"
+              >
+                Eliminar
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    }
+    <app-form-reserva></app-form-reserva>
   </div>
 </section>
 } @else {

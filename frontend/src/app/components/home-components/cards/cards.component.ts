@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { ObraService } from '../../../services/obra.service';
+import { SalaService } from '../../../services/sala.service';
 
 @Component({
   selector: 'app-cards',
@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
   styles: ``
 })
 export class CardsComponent {
-  // constructor(public obraService: ObraService) {}
+  constructor(public salaService: SalaService) {}
 
-  // ngOnInit(): void {
-  //   this.obraService.get();
-  // }
+  ngOnInit(): void {
+    this.salaService.get();
+  }
 }

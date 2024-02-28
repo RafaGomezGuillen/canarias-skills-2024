@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { ImageModule } from '../image/image.module';
+import { ReservaModule } from '../reserva/reserva.module';
 
 @NgModule({
   declarations: [],
@@ -10,5 +10,5 @@ export class UserModule {
   username: string = '';
   email: string = '';
   roles: string[] = [];
-  // images: ImageModule[] = [];
+  reservas: ReservaModule[] = [];
 }

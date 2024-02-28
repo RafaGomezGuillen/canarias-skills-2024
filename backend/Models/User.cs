@@ -1,11 +1,11 @@
 ﻿//using backend.Models;
+using backend.Models;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
 public class User:IdentityUser
 {
-    // Here add new fields
-    //public virtual List<Review>? Reviews { get; set; }
+    public virtual List<Reserva>? Reservas { get; set; }
 }
 
 public class UserFields
@@ -15,8 +15,7 @@ public class UserFields
     public string Email { get; set; }
     public List<string> Roles { get; set; }
 
-    // Check new fields
-    //public List<Review>? Reviews { get; set; }
+    public virtual List<Reserva>? Reservas { get; set; }
 }
 
 public class UserLogin

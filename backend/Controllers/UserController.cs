@@ -11,9 +11,9 @@ namespace backend.Controllers
     public class UserController:ControllerBase
     {
         private readonly UserManager<User> _userManager;
-        private readonly ChangeNameContext _context;
+        private readonly HotelContext _context;
 
-        public UserController (UserManager<User> userManager, ChangeNameContext context)
+        public UserController (UserManager<User> userManager, HotelContext context)
         {
             _userManager = userManager;
             _context = context;
@@ -36,7 +36,7 @@ namespace backend.Controllers
             {
                 Username = a.UserName,
                 Email = a.Email,
-                //Reviews = _context.Review.Where(i => i.Username == a.UserName).ToList()
+                Reservas = _context.Reservas.Where(i => i.Username == a.UserName).ToList()
             }).ToListAsync();
 
             // Adding roles to users
@@ -75,7 +75,7 @@ namespace backend.Controllers
             {
                 Username = userManager.UserName,
                 Email = userManager.Email,
-                //Reviews = _context.Review.Where(i => i.Username == username).ToList()
+                Reservas = _context.Reservas.Where(i => i.Username == username).ToList()
             };
 
             // Adding roles to users

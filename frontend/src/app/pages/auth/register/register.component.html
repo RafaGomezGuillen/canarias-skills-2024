@@ -6,8 +6,8 @@
       <!-- logo -->
       <img src="/assets/imgs/logo.png" width="150" alt="Page logo" />
       <div class="mt-16 space-y-3">
-        <h3 class="text-neutral text-3xl font-bold">Title</h3>
-        <p class="text-neutral">Some text</p>
+        <h3 class="text-white text-3xl font-bold">Gestor de reservas de salas</h3>
+        <p class="text-white">¡Crea eventos!</p>
         <div class="flex items-center -space-x-2 overflow-hidden">
           <!-- Profile images -->
           <img
@@ -69,9 +69,9 @@
           alt="Page logo"
         />
         <div class="mt-5 space-y-2">
-          <h3 class="text-gray-800 text-2xl font-bold sm:text-3xl">Sign up</h3>
+          <h3 class="text-gray-800 text-2xl font-bold sm:text-3xl">Registrate</h3>
           <p>
-            Already have an account?
+            ¿Tienes una cuenta?
             <a
               routerLink="/login"
               class="font-medium text-primary hover:text-accent"
@@ -92,7 +92,7 @@
       <!-- Formulario de registro -->
       <form [formGroup]="registerForm" class="space-y-5">
         <div>
-          <label class="font-medium" for="username">Username</label>
+          <label class="font-medium" for="username">Nombre de usuario</label>
           <input
             type="text"
             formControlName="username"
@@ -102,8 +102,7 @@
           />
           <span id="username-error" class="text-error" aria-live="assertive">
             @if (username !== null && username.invalid && (username.dirty ||
-            username.touched)) { *Username is required, below 6 and above 30
-            characters }
+            username.touched)) { *Se requiere nombre de usuario, de menos de 6 y más de 3 caracteres}
           </span>
         </div>
         <div>
@@ -117,7 +116,7 @@
             aria-describedby="email-error"
           />
           <span id="email-error" class="text-error" aria-live="assertive">
-            @if (email !== null && email.invalid && (email.dirty || email.touched)) { *Email is required, and must be a valid email }
+            @if (email !== null && email.invalid && (email.dirty || email.touched)) { *El correo electrónico es obligatorio y debe ser un correo electrónico válido. }
           </span>
         </div>
         <div>
@@ -131,9 +130,7 @@
           />
           <span id="password-error" class="text-error" aria-live="assertive">
             @if (password !== null && password.invalid && (password.dirty ||
-            password.touched)) { *Password is required, must have at least one
-            uppercase, digit, non alphanumeric character and at least 6
-            characters }
+            password.touched)) { *La contraseña es obligatoria, debe tener al menos un dígito en mayúscula, un carácter no alfanumérico y al menos 6 caracteres}
           </span>
         </div>
         <!-- Botón de registro -->
@@ -147,7 +144,7 @@
           type="submit"
           (click)="onRegister()"
         >
-          Create account
+          Crear cuenta
         </button>
       </form>
     </div>

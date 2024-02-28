@@ -1,0 +1,69 @@
+
+<h3 class="block text-2xl font-bold text-center mt-2 text-default sm:text-3xl">¡Crea una reserva!</h3>
+
+<div class="bg-base-100 shadow my-5 p-4 py-6 sm:p-6 sm:rounded-lg">  
+  <form #rervaForm="ngForm" (ngSubmit)="onSubmit()" class="space-y-5">
+    <div>
+      <label class="font-medium" for="nombre">Nombre</label>
+      <input
+        id="nombre"
+        type="text"
+        [(ngModel)]="reservaService.formData.nombre"
+        name="nombre"
+        #nombre="ngModel"
+        required
+        class="w-full mt-2 px-3 py-2 text-neutral bg-transparent outline-none border focus:border-accent shadow-sm rounded-lg"
+      />
+    </div>
+    <div>
+      <label class="font-medium" for="invitados">Invitados</label>
+      <textarea
+        class="w-full mt-2 px-3 py-2 text-neutral bg-transparent outline-none border focus:border-accent shadow-sm rounded-lg"
+        id="invitados"
+        type="number"
+        [(ngModel)]="reservaService.formData.invitados"
+        name="invitados"
+        #invitados="ngModel"
+        required
+      >
+      </textarea>
+    </div>
+    <div>
+      <label class="font-medium" for="date">Fecha de reserva</label>
+      <input
+        id="date"
+        type="datetime-local"
+        [(ngModel)]="reservaService.formData.date"
+        name="date"
+        #date="ngModel"
+        required
+        class="w-full mt-2 px-3 py-2 text-neutral bg-transparent outline-none border focus:border-accent shadow-sm rounded-lg"
+      />
+    </div>
+    <div>
+      <label class="font-medium" for="idSala">Selecciona la sala</label>
+      <select
+        class="w-full mt-2 px-3 py-2 text-neutral bg-transparent outline-none border focus:border-accent shadow-sm rounded-lg"
+        id="idSala"
+        type="text"
+        [(ngModel)]="reservaService.formData.idSala"
+        name="idSala"
+        #idSala="ngModel"
+        required
+      >
+        @for (sala of salaService.salaList; track sala.id) { 
+          @if(sala.estaReservada === false) {
+            <option [value]="sala.id">{{ sala.nombre }}</option>
+          } 
+        }
+      </select>
+    </div>
+    <button
+      class="w-full px-4 py-2 text-white font-medium bg-primary hover:bg-accent active:bg-primary rounded-lg duration-150"
+      type="submit"
+      title="Crear reserva"
+    >
+      Crear reserva
+    </button>
+  </form>
+</div>

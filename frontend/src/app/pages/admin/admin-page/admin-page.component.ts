@@ -12,11 +12,6 @@ export class AdminPageComponent {
       desc: 'CRUD operations with users.',
       path: '/admin/users',
     },
-    {
-      title: 'Obras',
-      desc: 'Operaciones CRUD con obras.',
-      path: '/admin/obras',
-    },
   ];
 
   constructor(public userService: UserService) {}

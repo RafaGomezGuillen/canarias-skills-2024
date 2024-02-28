@@ -17,16 +17,16 @@ internal class Program
         ConfigurationManager configuration = builder.Configuration;
 
         // Entity Framework. Here Data context
-        builder.Services.AddDbContext<ChangeNameContext>(options =>
+        builder.Services.AddDbContext<HotelContext>(options =>
         {
-            options.UseSqlServer(builder.Configuration.GetConnectionString("ChangeNameDBContext")); // Change Context in appsettings.json
+            options.UseSqlServer(builder.Configuration.GetConnectionString("HotelDBContext")); // Change Context in appsettings.json
         });
 
         // Identity AUTH. Here User with their NEW fields
         builder.Services.AddIdentity<User, IdentityRole>(options =>
             options.SignIn.RequireConfirmedEmail = false
         )
-        .AddEntityFrameworkStores<ChangeNameContext>() // Here Data context
+        .AddEntityFrameworkStores<HotelContext>() // Here Data context
         .AddDefaultTokenProviders();
 
         // Adding AUTH

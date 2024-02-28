@@ -1,0 +1,37 @@
+@if(reservaService.reservaList.length > 0) {
+<h1 class="text-center text-3xl font-bold">Lista de Eventos</h1>
+<div class="mt-5 shadow-sm border rounded-lg overflow-x-auto">
+  <table
+    class="w-full table-auto text-sm text-left border-collapse divide-y divide-primary"
+  >
+    <thead class="bg-primary text-default font-medium">
+      <tr class="text-center">
+        <th class="py-3 px-6" scope="col">Evento</th>
+        <th class="py-3 px-6" scope="col">Invitados</th>
+        <th class="py-3 px-6" scope="col">Fecha</th>
+        <th class="py-3 px-6" scope="col">Sala</th>
+      </tr>
+    </thead>
+    <tbody class="text-neutral divide-y divide-primary">
+      @for (reserva of reservaService.reservaList; track reserva.id) {
+      <tr class="text-center">
+        <td class="px-6 py-4 whitespace-nowrap">{{ reserva.nombre }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ reserva.invitados }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ reserva.date }}</td>
+        <td class="px-6 whitespace-nowrap">
+          <a
+            class="underline"
+            [routerLink]="'/sala/' + reserva.sala.id"
+            [title]="'Ir a la página de ' + reserva.sala.nombre"
+          >
+            {{ reserva.sala.nombre }}
+          </a>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+} @else {
+  <h1 class="text-center text-3xl font-bold">No hay eventos registrados</h1>
+}
