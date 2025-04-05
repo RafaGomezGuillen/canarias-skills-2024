@@ -4,6 +4,8 @@ Number one repository on winning the Canarias Skills in the Web App Development 
 
 ![Canarias skills 2024 Logo](https://canariasskills.com/wp-content/uploads/2024/02/BANNER-HOME-MIN@2x.png)
 
+![Podium Celebration](./assets/podium.png)
+
 ## Tech Stack
 
 - [Angular 17](https://angular.dev/)
